@@ -1,0 +1,186 @@
+*{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+
+/* Unified typography & colors for controls and MWC components */
+:where(input, textarea, select, md-outlined-text-field, md-filled-text-field, md-filled-select){
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Ensure labels, captions and table text use the identical Inter font-family */
+label, .md3-caption, .judge-names, th, td, .rounds-table .round-label, .round-form label, footer, .container small{
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Explicit: ensure all label elements use the system UI sans-serif stack */
+label, label * {
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Ensure inner inputs inside MWC components inherit font and color */
+md-outlined-text-field::part(input), md-filled-text-field::part(input){
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+	color: #ffffff !important;
+	font-size:0.95rem !important; background:transparent !important;
+	caret-color: #ffffff !important;
+}
+md-outlined-text-field::part(label), md-filled-text-field::part(label){ font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+/* Force Inter font for all text input controls (native + MWC) */
+:where(input, textarea, select, md-outlined-text-field, md-filled-text-field, md-filled-select){
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+md-filled-text-field::part(input), md-filled-select::part(selected-text), md-filled-select::part(label){
+	font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+md-outlined-text-field::part(label), md-filled-text-field::part(label){ color:var(--app-on-surface,#e6eef8); }
+md-filled-select::part(selected-text), md-filled-select::part(label){ color:var(--app-on-surface,#e6eef8); font-family:inherit; }
+
+/* Corner name fields (explicit white text for clarity) */
+md-outlined-text-field#redName::part(input), md-outlined-text-field#blueName::part(input),
+md-outlined-text-field#redName::part(label), md-outlined-text-field#blueName::part(label){
+	color: #ffffff !important;
+	caret-color: #ffffff !important;
+}
+md-outlined-text-field#redName::part(input)::placeholder, md-outlined-text-field#blueName::part(input)::placeholder{
+	color: rgba(255,255,255,0.75) !important;
+}
+
+/* Stronger compatibility overrides for various MWC versions */
+md-outlined-text-field#redName,
+md-outlined-text-field#blueName{
+	color: #ffffff !important;
+	--md-sys-color-on-surface: #ffffff !important;
+	--md-sys-color-surface-variant: rgba(255,255,255,0.04) !important;
+}
+md-outlined-text-field#redName::part(host), md-outlined-text-field#blueName::part(host),
+md-outlined-text-field#redName::part(control), md-outlined-text-field#blueName::part(control),
+md-outlined-text-field#redName::part(textfield), md-outlined-text-field#blueName::part(textfield){
+	color: #ffffff !important;
+	caret-color: #ffffff !important;
+}
+
+/* Fallback: if MWC internals don't expose parts consistently, ensure the host's inline text color is white */
+md-outlined-text-field#redName, md-outlined-text-field#blueName { color: #ffffff !important; }
+
+/* Placeholder styling for readability */
+input::placeholder, textarea::placeholder, md-outlined-text-field::part(input)::placeholder, md-filled-text-field::part(input)::placeholder{
+	color: rgba(230,238,248,0.65) !important;
+}
+
+/* Force typed text color to pure white for all textboxes */
+input, textarea, select, input[type="number"]{ color: #ffffff !important; caret-color: #ffffff !important; }
+md-outlined-text-field::part(input), md-filled-text-field::part(input){ color: #ffffff !important; caret-color: #ffffff !important; }
+
+/* Table fields explicit white fallback */
+.rounds-table td md-outlined-text-field, .rounds-table td md-filled-text-field{ color: #ffffff !important; }
+
+/* Ensure native inputs also use the sans-serif stack and strong contrast */
+input, textarea, select { font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; color: var(--app-on-surface,#e6eef8) !important; caret-color: var(--app-on-surface,#e6eef8) !important; }
+
+/* For MDW components' selected text/placeholder regions */
+md-filled-select::part(selected-text), md-filled-select::part(placeholder){ color: var(--app-on-surface,#e6eef8) !important; font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important; }
+
+/* Buttons: use elevated surface and readable text on dark backgrounds */
+button, md-filled-button, md-outlined-button{
+	background: rgba(255,255,255,0.04); color:var(--app-on-surface,#e6eef8); border-color: rgba(255,255,255,0.06);
+}
+body{background:var(--app-surface,#0b1220);color:var(--app-on-surface,#e6eef8);margin:0;padding:24px;font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif}
+.container{max-width:1100px;margin:24px auto;padding:24px;border-radius:var(--app-radius,12px);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+/* Rounds slider styles (full-width red track, rounded) */
+.rounds-slider{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.rounds-slider label{min-width:120px;color:var(--app-on-surface,#e6eef8);font-weight:600}
+.rounds-slider input[type="range"]{flex:1;-webkit-appearance:none;appearance:none;height:12px;background:transparent}
+.rounds-slider input[type="range"]::-webkit-slider-runnable-track{height:8px;background:var(--md-sys-color-primary,#1E88E5);border-radius:999px}
+.rounds-slider input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-5px;background:var(--md-sys-color-primary,#1E88E5);border-radius:50%;box-shadow:0 0 0 6px rgba(30,136,229,0.12)}
+.rounds-slider input[type="range"]::-moz-range-track{height:8px;background:var(--md-sys-color-primary,#1E88E5);border-radius:999px}
+.rounds-slider input[type="range"]::-moz-range-thumb{width:18px;height:18px;background:var(--md-sys-color-primary,#1E88E5);border-radius:50%;border:none}
+.rounds-slider #roundsValue{margin-left:8px;font-weight:600}
+header h1{margin:0 0 4px}
+.setup{display:flex;gap:12px;align-items:center;margin:12px 0}
+.setup label input[type="text"]{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--app-on-surface,#e6eef8);font-family:inherit}
+.setup md-filled-select{min-width:120px;width:120px}
+.setup md-outlined-text-field{min-width:160px}
+.toggle{margin-left:auto;display:flex;align-items:center;gap:8px}
+.scorecard{display:flex;gap:16px;margin-top:24px}
+.scorecard .sidebar{width:140px;padding:12px}
+.rounds-list{display:flex;flex-direction:column;gap:6px}
+.round-btn{padding:8px;border-radius:6px;background:#f1f4ff;border:1px solid #dbe4ff;cursor:pointer;text-align:left}
+.round-btn.active{background:#e6f4ff;border-color:#bfe8ff}
+.round-btn.locked{opacity:0.5}
+.totals{margin-top:14px}
+.main{flex:1;padding:12px}
+.round-form label{display:flex;flex-direction:column;margin-bottom:8px}
+
+/* Header actions: Save/Next beside round header */
+.header-row{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.header-row h2{margin:0}
+.header-actions{display:flex;gap:8px;align-items:center;margin-left:12px}
+.header-actions button{padding:8px 12px;border-radius:6px}
+.judge-cards{display:flex;gap:12px;margin-bottom:12px}
+.judge-card{flex:1;border:1px solid #ddd;padding:10px;border-radius:6px;background:#fcfcfc}
+.judge-card .judge-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.judge-card .scores{display:flex;flex-direction:column;gap:6px}
+.judge-card .scores .score-row{display:flex;justify-content:space-between;padding:6px;border-radius:4px;background:#fff;border:1px solid #f0f0f0}
+.judge-names{font-size:14px;color:#444}
+.rounds-table-container{margin-bottom:12px}
+
+/* Video container styles */
+.video-container{margin-top:16px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));padding:8px}
+.video-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.video-header #videoTitle{font-weight:700}
+.video-wrap{position:relative;padding-top:56.25%; /* 16:9 ratio */}
+.video-wrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0;border-radius:8px}
+.video-header button{background:transparent;border:none;color:var(--app-on-surface);font-size:16px;cursor:pointer}
+
+.rounds-table{width:100%;border-collapse:separate;border-spacing:0 8px}
+.rounds-table thead th{background:var(--md-sys-color-primary,#1E88E5);color:#fff;padding:12px;border-radius:8px 8px 0 0}
+.rounds-table tbody td{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:center;background:transparent}
+.rounds-table input[type="number"]{width:72px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);color:var(--app-on-surface,#e6eef8);font-family:inherit}
+
+/* Native select styling */
+select#rounds{background:transparent;color:var(--app-on-surface,#e6eef8);border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;font-family:inherit}
+
+/* MWC text fields used in table cells */
+.rounds-table td md-outlined-text-field,
+.rounds-table td md-filled-text-field{
+	width:72px; max-width:72px; --md-sys-typescale-body-1-font-size:1.05rem; display:inline-block;
+}
+.rounds-table td md-outlined-text-field::part(input),
+.rounds-table td md-filled-text-field::part(input){ text-align:center; padding:6px 8px; }
+.rounds-table td md-outlined-text-field[disabled]::part(host),
+.rounds-table td md-filled-text-field[disabled]::part(host){ opacity:0.65; }
+.rounds-table .round-label{font-weight:600}
+.rounds-table tr.total-row td{font-weight:700;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent)}
+.score-control{display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.score-control .score-btn{width:36px;height:36px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--app-on-surface);cursor:pointer;font-size:18px}
+.score-control .score-label{min-width:36px;height:36px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--app-on-surface);display:inline-flex;align-items:center;justify-content:center;padding:0 8px;font-weight:600}
+.score-control .score-btn:disabled, .score-control .score-label:disabled{opacity:0.45;cursor:default}
+.controls{display:flex;flex-direction:column;gap:8px}
+.finish-btn{background:#10b981;color:#fff;border-color:#059669}
+.total-winner{background:#dcfce7}
+.md3-surface :is(button, input, md-filled-button, md-outlined-button, md-filled-select, md-outlined-text-field){outline: none}
+.md3-surface :is(button, input, md-filled-button, md-outlined-button, md-filled-select, md-outlined-text-field){outline: none}
+:focus-visible{outline:3px solid rgba(30,136,229,0.28);outline-offset:3px}
+.rounds-list{display:flex;flex-direction:row;gap:8px;overflow:auto;padding:8px}
+.rounds-list ::-webkit-scrollbar{height:8px}
+.round-actions{display:flex;gap:8px}
+button{padding:8px 12px;border-radius:6px;border:1px solid #ccc;background:#fff;cursor:pointer}
+button.primary{background:#2563eb;color:#fff;border-color:#1e40af}
+
+/* Make the round action buttons visually primary (blue) to match app design */
+#saveRound, #nextRound {
+	background: var(--md-sys-color-primary, #1E88E5);
+	color: #ffffff;
+	border-color: rgba(0,0,0,0.12);
+	padding: 10px 16px;
+	font-weight: 600;
+	box-shadow: 0 6px 18px rgba(30,136,229,0.08);
+}
+#saveRound:hover:not(:disabled), #nextRound:hover:not(:disabled) {
+	filter: brightness(0.96);
+}
+#saveRound:focus-visible, #nextRound:focus-visible { outline: 3px solid rgba(30,136,229,0.22); outline-offset: 3px; }
+#saveRound:disabled, #nextRound:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
+.hidden{display:none}
+.exportArea{white-space:pre-wrap;background:#111;color:#fff;padding:12px;border-radius:6px}
+footer{margin-top:18px;color:#666}
+@media(max-width:800px){.scorecard{flex-direction:column}.scorecard .sidebar{width:auto;border-right:none;border-bottom:1px solid #eee}}

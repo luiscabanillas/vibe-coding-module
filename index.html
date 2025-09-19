@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boxing Scorecard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module">import 'https://esm.run/@material/web/all.js'</script>
+  <style>
+    :root{
+      --md-sys-color-primary: #1E88E5;
+      --md-sys-color-secondary: #43A047;
+      --md-sys-color-error: #E53935;
+      --app-surface: #ffffff;
+      --app-on-surface: #111827;
+      --app-radius: 12px;
+      --gap: 16px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --app-surface: #0b1220;
+        --app-on-surface: #e6eef8;
+      }
+    }
+    body{background:var(--app-surface);color:var(--app-on-surface);}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <md-top-app-bar id="topAppBar" title="Boxing Scorecard"></md-top-app-bar>
+    <!-- Rounds slider placed above the main controls -->
+    <div class="rounds-slider" style="margin-top:16px;padding:12px 0">
+      <label class="md3-caption">Rounds: <span id="roundsValue">12</span></label>
+      <input type="range" id="rounds" min="3" max="12" value="12" />
+    </div>
+
+  <section class="setup md3-surface" style="display:flex;gap:var(--gap);align-items:center;padding:16px;border-radius:var(--app-radius);margin-top:6px">
+      <!-- old select removed; slider above controls now sets rounds -->
+
+      <md-outlined-text-field id="redName" placeholder="Red corner (e.g. Canelo)" style="min-width:160px"></md-outlined-text-field>
+      <md-outlined-text-field id="blueName" placeholder="Blue corner (e.g. Crawford)" style="min-width:160px"></md-outlined-text-field>
+
+  <md-filled-button id="start">Start Fight</md-filled-button>
+  <md-outlined-button id="reset">Reset</md-outlined-button>
+  <md-outlined-button id="export">Export JSON</md-outlined-button>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+        <md-switch id="lockPrevious" checked></md-switch>
+        <label for="lockPrevious" style="font-size:14px">Lock previous rounds</label>
+      </div>
+    </section>
+
+    <!-- Video URL input shown below the controls: paste link or ID, then click Start Fight -->
+    <div id="videoUrlRow" style="margin-top:12px;">
+      <input id="videoUrlInput" type="text" placeholder="YouTube URL or ID (paste here and click Start Fight)" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--app-on-surface)" />
+    </div>
+
+    <div id="videoContainer" class="video-container" hidden>
+      <div class="video-header">
+        <span id="videoTitle">Fight Video</span>
+        <button id="removeVideo" class="mdc-icon-button" title="Remove video">✕</button>
+      </div>
+      <div class="video-wrap">
+        <!-- iframe injected here -->
+      </div>
+    </div>
+
+    <section class="scorecard hidden" id="scorecard">
+      <div class="sidebar">
+        <div class="rounds-list" id="roundsList"></div>
+        <div class="controls">
+          <button id="finishScoring" class="hidden">Finish Scoring</button>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="header-row">
+          <h2 id="roundHeader">Round 1</h2>
+          <div class="header-actions">
+            <button id="saveRound">Save Round</button>
+            <button id="nextRound">Next Round</button>
+          </div>
+          <div class="judge-names" id="judgeNames">
+            <!-- judge names rendered here -->
+          </div>
+        </div>
+
+        <div class="rounds-table-container">
+          <table class="rounds-table md3-data-table" id="roundsTable">
+            <thead>
+                <tr>
+                  <th scope="col" id="leftHeader">Red Corner</th>
+                  <th scope="col">Round</th>
+                  <th scope="col" id="rightHeader">Blue Corner</th>
+                </tr>
+            </thead>
+            <tbody id="roundsTableBody">
+              <!-- rows rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- notes removed per user request -->
+
+        <div class="summary" id="summary">
+          <h3>Fight Summary</h3>
+          <pre id="exportArea" class="hidden"></pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <small>Simple static app — scores persist in browser.</small>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
